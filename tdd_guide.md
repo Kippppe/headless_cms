@@ -954,4 +954,4 @@ class ContentController(
 - `CreateContentRequest.kt`
 - `UpdateContentRequest.kt`
 - `ContentResponse.kt`
-- `PublishContentRequest.
+- `PublishContentRequest.`
