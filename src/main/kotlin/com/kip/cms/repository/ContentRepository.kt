@@ -37,4 +37,13 @@ interface ContentRepository : JpaRepository<Content, Long> {
     
     @Query("SELECT c FROM Content c WHERE c.status = 'PUBLISHED' AND c.publishDate <= CURRENT_TIMESTAMP ORDER BY c.publishDate DESC")
     fun findAllPublishedContent(): List<Content>
+    
+    // Additional methods for integration testing
+    fun findByAuthorAndStatus(author: User, status: ContentStatus): List<Content>
+    
+    fun findByContentTypeAndAuthor(contentType: ContentType, author: User): List<Content>
+    
+    fun findByContentDataContainingIgnoreCase(searchTerm: String): List<Content>
+    
+    fun findByContentDataContaining(searchTerm: String): List<Content>
 }
