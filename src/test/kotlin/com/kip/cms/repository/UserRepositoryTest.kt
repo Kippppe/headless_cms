@@ -126,9 +126,11 @@ class UserRepositoryTest {
 
         val foundUser = userRepository.findByEmail("test@example.com")
 
-        assertThat(foundUser).isNotNull
-        assertThat(foundUser!!.username).isEqualTo("testuser")
-        assertThat(foundUser.email).isEqualTo("test@example.com")
+        val checkedFoundUser = requireNotNull(foundUser)
+
+        assertThat(checkedFoundUser).isNotNull
+        assertThat(checkedFoundUser.username).isEqualTo("testuser")
+        assertThat(checkedFoundUser.email).isEqualTo("test@example.com")
     }
 
     @Test
