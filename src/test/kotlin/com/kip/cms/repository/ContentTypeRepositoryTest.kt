@@ -17,7 +17,7 @@ import org.junit.jupiter.api.assertThrows
 
 @SpringBootTest
 @Transactional
-@ActiveProfiles("test")
+@ActiveProfiles("test") 
 class ContentTypeRepositoryTest {
 
     @Autowired
