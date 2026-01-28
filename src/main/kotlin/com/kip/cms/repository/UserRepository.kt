@@ -7,8 +7,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface UserRepository : JpaRepository<User, Long> {
-    fun finndById(id: Long): User?
-    
     /**
      * Find user by username (unique identifier)
      * @param username the username to search for

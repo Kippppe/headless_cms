@@ -27,6 +27,8 @@ class ContentRepositoryTest {
 
     @BeforeEach
     fun setUp() {
+        // Clean up for isolated testing
+        contentRepository.deleteAll()
         // Create test user
         testUser = User(
             username = "testuser",
