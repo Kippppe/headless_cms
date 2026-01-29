@@ -1,6 +1,7 @@
 package com.kip.cms.Service
 
 import com.kip.cms.entity.User
+import com.kip.cms.entity.UserRole
 import com.kip.cms.repository.UserRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -17,9 +18,15 @@ class UserService(
         validateUniqueUserEmail(user.email)
 
         val hashedPassword = passwordEncoder.encode(user.password)
-        val userWithHashedPassword = user.copy(password = hashedPassword)
+        val newUser = User(
+            username = user.username!!,
+            email = user.email!!,
+            password = hashedPassword!!,
+            role = user.role,
+            active = user.active
+        )
 
-        return userRepository.save(userWithHashedPassword)
+        return userRepository.save(newUser)
     }
 
     fun findById(id: Long): User? {
