@@ -88,6 +88,8 @@ class UserRepositoryTest {
         userRepository.flush()
 
         assertThat(savedUser.password).isNotEmpty()
+        assertThat(savedUser.password).isNotEqualTo(plainPassword)
+        assertThat(passwordEncoder.matches(plainPassword, savedUser.password)).isTrue()
     }
 
     @Test
@@ -112,25 +114,22 @@ class UserRepositoryTest {
         val user = createUser("testuser", "test@example.com")
         userRepository.save(user)
 
-        val foundUser = userRepository.findByUsername("testuser")
+        val foundUser = requireNotNull(userRepository.findByUsername("testuser"))
 
-        assertThat(foundUser).isNotNull
-        assertThat(foundUser!!.username).isEqualTo("testuser")
+        assertThat(foundUser.username).isEqualTo("testuser")
         assertThat(foundUser.email).isEqualTo("test@example.com")
     }
 
     @Test
     fun `should find user by email`() {
-        val user = createUser("testuser", "test@example.com")
+        val user = createUser("testuser","test@example.com")
         userRepository.save(user)
 
-        val foundUser = userRepository.findByEmail("test@example.com")
+        val foundUser = requireNotNull(userRepository.findByEmail("test@example.com"))
 
-        val checkedFoundUser = requireNotNull(foundUser)
+        assertThat(foundUser.username).isEqualTo(testuser)
+        assertThat(foundUser.email).isEqualTo(test@example.com)
 
-        assertThat(checkedFoundUser).isNotNull
-        assertThat(checkedFoundUser.username).isEqualTo("testuser")
-        assertThat(checkedFoundUser.email).isEqualTo("test@example.com")
     }
 
     @Test
