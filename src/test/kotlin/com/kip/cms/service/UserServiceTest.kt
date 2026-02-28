@@ -387,4 +387,4 @@ class UserServiceTest {
 //         assertThat(editor?.role).isEqualTo(UserRole.EDITOR)
 //         assertThat(viewer?.role).isEqualTo(UserRole.VIEWER)
 //     }
-// }
+}
