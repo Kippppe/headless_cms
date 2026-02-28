@@ -35,7 +35,7 @@ class ContentTypeService(
 
     fun deactivateContentType(id: Long): ContentType {
         val contentType = contentTypeRepository.findById(id)
-            .orElseThrow {IllegalArgumentException("Content not found")}
+            .orElseThrow {IllegalArgumentException("ContentType not found")}
 
         val deactiveContentType = contentType.copy(
             active = false
@@ -43,9 +43,5 @@ class ContentTypeService(
 
         return contentTypeRepository.save(deactiveContentType)
     }
-        }
-    }
-
-    private fun validateUniqueName(name: String) {
-    }
 }
+ 
