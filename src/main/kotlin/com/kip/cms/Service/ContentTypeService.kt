@@ -44,4 +44,3 @@ class ContentTypeService(
         return contentTypeRepository.save(deactiveContentType)
     }
 }
- 
