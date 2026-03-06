@@ -43,4 +43,9 @@ class ContentService(
             throw IllegalArgumentException("Slug '${slug}' is already used")
         }
     }
+
+    fun findById(id: Long): Content?{
+        return contentRepository.findById(id)
+        .orElse(null)
+    }
 }
